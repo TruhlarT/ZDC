@@ -6,9 +6,9 @@ runYear="run21"
 tofCut=10
 
 # untar all the tarred .dat files
-#pushd data/ >> /dev/null
-#./untarAll.sh $runDirectory
-#popd >> /dev/null
+pushd data/ >> /dev/null
+./untarAll.sh $runDirectory
+popd >> /dev/null
 
 makeUnseenList.sh $runYear
 
@@ -37,4 +37,5 @@ pushd ../ZDC_Calibration/$runDirectory  >> /dev/null
   ./moveToWww.sh
 popd >> /dev/null
 
+rm $runList
 echo '**************Finished****************'

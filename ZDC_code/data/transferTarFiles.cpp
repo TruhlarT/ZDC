@@ -53,7 +53,7 @@ int transferTarFiles()
 	cout<<"================================================"<<endl;
 	if(Output_List_File){ofile.close();}
 
-	cout<<" Executing hpss_user.pl -f"<<OutputFileName<<endl;
+	cout<<" Executing hpss_user.pl -f "<<OutputFileName<<endl;
 	cout<<"================================================"<<endl;
 	if(Execute_Command){CMD = Form("hpss_user.pl -f %s",OutputFileName.Data());gSystem->Exec(CMD.Data());}
 	cout<<"================================================"<<endl;

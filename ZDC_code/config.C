@@ -41,10 +41,10 @@
 //	dirOut = "/star/starlib/doc_protected/pwg/lfspectra/cjena/run10/zdcMonitoring/ZDC_onlinePlots/";//CJ
 //	dirOut = "/star/u/yhzhu/bnl/final_AuAu200GeV/testrun"; 
 
-// THIS NEEDS TO BE CHANGED EVERY RUN
+// THIS NEEDS TO BE CHANGED EVERY RUN (not run number)
 
  	dirOut = "/gpfs01/star/pwg/truhlar/ZDC/ZDC_Calibration/run21.ZdcCalibration.truhlar";
-	seenRuns = "/gpfs01/star/pwg/truhlar/ZDC/ZDC_code/seenRuns_run21.truhlar.txt";
+	seenRuns = "/gpfs01/star/pwg/truhlar/ZDC/ZDC_code/seenRuns/seenRuns_run21.truhlar.txt";
 
 //	... and assume it is visible at this URL
 //	publicDir = "http://www.star.bnl.gov/protected/spin/ogrebeny/zdc2009";

@@ -1,5 +1,12 @@
 # ZDC
 
+## Compile the code
+```sh
+starver dev
+cons
+```
+
+
 ## Analysis of the new runs
 Check your run in [STAR RunLog Browser](https://online.star.bnl.gov/RunLog/).
 Sometimes it is useful to check if the run***.tgz exists (it might not for some runs). To log to HPSS from RACF, enter:
@@ -17,6 +24,11 @@ Once the file is download, the only think you need to do is run:
 ```sh
 ./readRunList.sh 
 ```
+Check the quality of fits in
+```sh
+/gpfs01/star/pwg/truhlar/ZDC/ZDC_Calibration/run21.ZdcCalibration.truhlar/analysis/RUNNUMBER
+```
+
 Before running this script, update all files and create appropriate folders. For details see the section below.
 
 ## Changes needed at the beginning of the new year run

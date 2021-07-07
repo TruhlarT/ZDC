@@ -1,6 +1,6 @@
 #!/bin/bash
-#baseFolder=${1}
-baseFolder=/gpfs01/star/pwg/truhlar/ZDC/ZDC_code/data/run21.ZdcCalibration.truhlar/22180018
+baseFolder=${1}
+#baseFolder=/gpfs01/star/pwg/truhlar/ZDC/ZDC_code/data/run21.ZdcCalibration.truhlar/22180018
 
 pushd $baseFolder >> /dev/null
 

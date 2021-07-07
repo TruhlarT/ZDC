@@ -5,7 +5,9 @@
 #include <TCanvas.h>
 #include <iomanip>
 #include <iostream>
+#include <string>
 #include <fstream>
+#include <algorithm>
 #include <stdio.h>
 #include <TString.h>
 
@@ -133,6 +135,36 @@ void zdcTree::Loop()
   TH1D *west_sum_combination = new TH1D("west_sum_combination", "West ADC: Tower1 + Tower2 + Tower3", 100, 0, 400);
   west_sum_combination->GetXaxis()->SetTitle("ADC_WEST:Tower1+Tower2+Tower3");
 
+  char config_name[200];
+  sprintf(config_name,"%s/fit_parameters.in",folder_name);
+  ifstream ConfigFile(config_name);
+  if(!ConfigFile) {cerr<<"Openning config file failed !"<<endl; return;}
+
+  string line;
+  TString names[4] = { TString("EastSnpMean"), TString("EastSnpSigma"), 
+                  TString("WestSnpMean"), TString("WestSnpSigma")};
+  float parameters[4];
+  while (getline (ConfigFile, line))
+  {
+    if(line[0] == '#' || line.empty())
+      continue;
+    int delimiterPos = line.find("=");
+    string name = line.substr(0, delimiterPos);
+    string value = line.substr(delimiterPos + 1);
+    cout << name << " " << value << '\n';
+    for (int i = 0; i < 4; ++i)
+      if(name == names[i]){ parameters[i] = atof(value.c_str()); break;}
+  }
+
+  ConfigFile.close();
+
+  const float eastSnpMean = parameters[0];
+  const float eastSnpSigma = parameters[1];
+  const float westSnpMean = parameters[2];
+  const float westSnpSigma = parameters[3];
+  const float NSigma = 2.;
+
+
   int east_count_att=0;
   int east_count_sum=0;
   int east_count_1=0;
@@ -173,11 +205,6 @@ void zdcTree::Loop()
     bool eastTACcut = zdc_TDC_EastSum > 200 && zdc_TDC_EastSum < 2000;
     bool westTACcut = zdc_TDC_WestSum > 200 && zdc_TDC_WestSum < 2000;
     // bool westCut = true, eastCut = true; // not cutting on anything
-    const float eastSnpMean = 132;
-    const float eastSnpSigma = 32.59;
-    const float westSnpMean = 111.1;
-    const float westSnpSigma = 49.87;
-    const float NSigma = 2.;
 
     if (!(eastTACcut && westTACcut))
       continue;

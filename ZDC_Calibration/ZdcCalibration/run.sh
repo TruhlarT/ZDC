@@ -7,4 +7,6 @@ echo $runNumber
 echo $tofCut
 
 root -l -b -q loadZDCtree.C 'run.cxx++g('$tofCut','$runNumber')'
+root -l -q 'plotSingleNeutron.C('$runNumber')'
+root -l -b -q loadZDCtree.C 'run.cxx++g('$tofCut','$runNumber')'
 root -l -q 'html_maker.cpp('$runNumber')'

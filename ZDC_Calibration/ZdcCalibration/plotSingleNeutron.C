@@ -1,4 +1,6 @@
 #include <string>
+#include <iostream>
+#include <fstream>  
 // NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
 // 1  Constant     7.11954e+01   1.92490e+01   6.98087e-03  -1.45442e-05
 // 2  BgConstant   1.91250e+03   3.33039e+02   8.66676e-02   1.43172e-06
@@ -8,10 +10,12 @@
 // 6  sigma        9.80875e+00   1.28593e+00   2.11360e-03   1.01395e-04
 
 
-void plotSingleNeutron()
+void plotSingleNeutron(std::string runNumber = "22180018")
 {
-  std::string runNumber = "22180018";
   TFile *inf1 = new TFile( ("../run21.ZdcCalibration.truhlar/analysis/" + runNumber + "/" + runNumber + "_my_zdc_result_file.root").data() );
+  TString config_name = "../run21.ZdcCalibration.truhlar/analysis/" + runNumber + "/fit_parameters.in";
+  std::ofstream configfile (config_name);
+  if(!configfile) {cerr<<"Create data file failed !"<<endl; return;}
 
   TCanvas *C1 = new TCanvas("C1", "east", 600, 400);
   TCanvas *C2 = new TCanvas("C2", "west", 600, 400);
@@ -27,9 +31,9 @@ void plotSingleNeutron()
   eastF->SetParName(0,"Constant");
   eastF->SetParName(1,"BgConstant");
   eastF->SetParName(2,"BgSlope");
-  eastF->SetParName(3,"Yield Single");
+  eastF->SetParName(3,"Yield");
   eastF->SetParName(4,"Mean");
-  eastF->SetParName(5,"sigma Single");
+  eastF->SetParName(5,"sigma");
   eastF->SetParName(6,"Yield Double");
   eastF->SetParName(7,"sigma Double");
 
@@ -64,6 +68,12 @@ void plotSingleNeutron()
   C2->cd();
   gStyle->SetOptFit(1111);
   hWest->Draw();
+
+  configfile << "EastSnpMean="<< eastF->GetParameter("Mean") <<"\n";
+  configfile << "EastSnpSigma="<< eastF->GetParameter("sigma") <<"\n"; 
+  configfile << "WestSnpMean="<< westF->GetParameter("Mean") <<"\n"; 
+  configfile << "WestSnpSigma="<< westF->GetParameter("sigma") <<"\n"; 
+  configfile.close()
 
   std::string eastFileName = "../run21.ZdcCalibration.truhlar/analysis/" + runNumber + "/snp" + runNumber + "east";
   C1->SaveAs( (eastFileName + ".pdf" ).data() );
