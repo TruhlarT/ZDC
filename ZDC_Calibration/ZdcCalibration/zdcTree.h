@@ -103,10 +103,10 @@ zdcTree::zdcTree(int runNumber, TTree *tree, int tofCut):
 
   if (tree == 0) {
 //    TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject(Form("/gpfs01/star/pwg/lkramarik/ZDC/ZDC_Calibration/run18.ZdcCalibration.lkramarik/histo/run_%d.histo.root", mRunNumber));
-    TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject(Form("/gpfs01/star/pwg/truhlar/ZDC/ZDC_Calibration/run21.ZdcCalibration.truhlar/histo/run_%d.histo.root", mRunNumber));
+    TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject(Form("/gpfs01/star/pwg/truhlar/ZDC/ZDC_Calibration/run22.ZdcCalibration.truhlar/histo/run_%d.histo.root", mRunNumber));
     if (!f) {
 //      f = new TFile(Form("/gpfs01/star/pwg/lkramarik/ZDC/ZDC_Calibration/run18.ZdcCalibration.lkramarik/histo/run_%d.histo.root", mRunNumber));
-      f = new TFile(Form("/gpfs01/star/pwg/truhlar/ZDC/ZDC_Calibration/run21.ZdcCalibration.truhlar/histo/run_%d.histo.root", mRunNumber));
+      f = new TFile(Form("/gpfs01/star/pwg/truhlar/ZDC/ZDC_Calibration/run22.ZdcCalibration.truhlar/histo/run_%d.histo.root", mRunNumber));
     }
     tree = (TTree*)gDirectory->Get("zdcTree");
 

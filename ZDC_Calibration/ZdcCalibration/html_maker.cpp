@@ -4,12 +4,12 @@
 void html_maker(int RunNumber = 22180018)
 {
 //*********************************************************// specify RunNumber & info.
-	char trgSetup[50] = {"ZdcCalibration"};
-//	char trgSetup[20] = {"pp500production"};
+//	char trgSetup[50] = {"ZdcCalibration"};
+	char trgSetup[20] = {"pp500production"};
 	char typeEnergy[10]={"truhlar"};
 
 	TString Trgsetup = "ZdcCalibration";
-	TString BeamTypeEnergy = "d+Au";
+	TString BeamTypeEnergy = "p+p";
 //*********************************************************
 	if(RunNumber < 1e7 || RunNumber >= 1e8) // has to be an 8-digit number
 	{

@@ -9,7 +9,7 @@ int transferTarFiles()
 	bool Execute_Command  = true;
 	bool Delete_List_File = true;
 
-	int RunNumber	= 22180018;
+	int RunNumber	= 22347013;
 // ***********************************************************************
 	TString Energy  = "truhlar";
 	TString trgSetup= "ZdcCalibration";
