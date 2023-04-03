@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>  
+#include "TString.h"
 // NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
 // 1  Constant     7.11954e+01   1.92490e+01   6.98087e-03  -1.45442e-05
 // 2  BgConstant   1.91250e+03   3.33039e+02   8.66676e-02   1.43172e-06
@@ -10,8 +11,9 @@
 // 6  sigma        9.80875e+00   1.28593e+00   2.11360e-03   1.01395e-04
 
 
-void plotSingleNeutron(std::string runNumber = "22180018")
+void plotSingleNeutron(const int runNmbr = 22180018)
 {
+  const std::string runNumber = Form("%i",runNmbr);
   TFile *inf1 = new TFile( ("../run21.ZdcCalibration.truhlar/analysis/" + runNumber + "/" + runNumber + "_my_zdc_result_file.root").data() );
   TString config_name = "../run21.ZdcCalibration.truhlar/analysis/" + runNumber + "/fit_parameters.in";
   std::ofstream configfile (config_name);
@@ -73,7 +75,7 @@ void plotSingleNeutron(std::string runNumber = "22180018")
   configfile << "EastSnpSigma="<< eastF->GetParameter("sigma") <<"\n"; 
   configfile << "WestSnpMean="<< westF->GetParameter("Mean") <<"\n"; 
   configfile << "WestSnpSigma="<< westF->GetParameter("sigma") <<"\n"; 
-  configfile.close()
+  configfile.close();
 
   std::string eastFileName = "../run21.ZdcCalibration.truhlar/analysis/" + runNumber + "/snp" + runNumber + "east";
   C1->SaveAs( (eastFileName + ".pdf" ).data() );

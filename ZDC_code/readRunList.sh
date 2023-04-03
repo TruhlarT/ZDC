@@ -1,8 +1,8 @@
 #!/bin/bash
 
 runList=${1:-"unSeenRuns.list"}
-runDirectory="run22.ZdcCalibration.truhlar"
-runYear="run22"
+runDirectory="run21.ZdcCalibration.truhlar"
+runYear="run21"
 tofCut=10
 
 # untar all the tarred .dat files
@@ -23,7 +23,6 @@ for run in $( cat  $runList ); do
     echo Previous reading failed, aborting ...
     return -1
   fi
-
   ./read
 
   pushd ../ZDC_Calibration/ZdcCalibration/ >> /dev/null

@@ -134,11 +134,11 @@ void zdcTree::Loop()
   east_sum_combination->GetXaxis()->SetTitle("ADC_EAST:Tower1+Tower2+Tower3");
   TH1D *west_sum_combination = new TH1D("west_sum_combination", "West ADC: Tower1 + Tower2 + Tower3", 100, 0, 400);
   west_sum_combination->GetXaxis()->SetTitle("ADC_WEST:Tower1+Tower2+Tower3");
-
+/*
   char config_name[200];
   sprintf(config_name,"%s/fit_parameters.in",folder_name);
   ifstream ConfigFile(config_name);
-  if(!ConfigFile) {cerr<<"Openning config file failed !"<<endl; return;}
+  if(!ConfigFile) {cerr<<"Openning config file "<< config_name << " failed !"<<endl; return;}
 
   string line;
   TString names[4] = { TString("EastSnpMean"), TString("EastSnpSigma"), 
@@ -157,11 +157,11 @@ void zdcTree::Loop()
   }
 
   ConfigFile.close();
-
-  const float eastSnpMean = parameters[0];
-  const float eastSnpSigma = parameters[1];
-  const float westSnpMean = parameters[2];
-  const float westSnpSigma = parameters[3];
+*/
+  const float eastSnpMean = 45.9270; //parameters[0];
+  const float eastSnpSigma = 11.6; //parameters[1];
+  const float westSnpMean = 45.3; //parameters[2];
+  const float westSnpSigma = 16.3; //parameters[3];
   const float NSigma = 2.;
 
 

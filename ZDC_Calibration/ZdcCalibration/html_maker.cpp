@@ -4,8 +4,8 @@
 void html_maker(int RunNumber = 22180018)
 {
 //*********************************************************// specify RunNumber & info.
-//	char trgSetup[50] = {"ZdcCalibration"};
-	char trgSetup[20] = {"pp500production"};
+	char trgSetup[50] = {"ZdcCalibration"};
+//	char trgSetup[20] = {"pp500production"};
 	char typeEnergy[10]={"truhlar"};
 
 	TString Trgsetup = "ZdcCalibration";

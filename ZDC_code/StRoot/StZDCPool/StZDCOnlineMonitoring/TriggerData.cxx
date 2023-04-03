@@ -49,16 +49,16 @@ StTriggerData* TriggerData::Instance(char *td, int run, int event){
   }else{
       if(trgdata != 0) delete trgdata;
       trgdata = 0;    
-      LOG_DEBUG << TString::Format("TRG RAW: version = _%02x_%02x_%02x_%02x_\n",td[0],td[1],td[2],td[3]) << endm;
+      LOG_ERROR << TString::Format("TRG RAW: version = _%02x_%02x_%02x_%02x_\n",td[0],td[1],td[2],td[3]) << endm;
    // if(td[3] == 0x41){//modified by yhzhu for run2012!!
    // if(td[3] == 0x42){//modified by xuyifei (xyf)  for run2013!!
    // if(td[3] == 0x42){//modified by xuyifei (xyf)  for run2014!!
    // if(td[3] == 0x43){//modified by msimko for run2016	!!
    // if(td[3] == 0x44){//modified by msimko for run2017	!!
 //      if(td[3] == 0x45){//modified by msimko for run2017	!!
-//      if(td[3] == 0x46)//modified by msimko for run2019	!!
-      if(td[3] == 0x48) //modified by vanekjan for run2021 
-//      if(td[3] == 0x49) //modified by truhlar for run2022
+//      if(td[3] == 0x46)//modified by msimko for run2022	!!
+//      if(td[3] == 0x48) //modified by vanekjan for run2022 
+      if(td[3] == 0x47) //modified by truhlar for run2022
       {
 	TriggerDataBlk2022* trgdata2022 = (TriggerDataBlk2022*)td; // msimko
 	StTriggerData2022* trgd = new StTriggerData2022(trgdata2022,run); // msimko
@@ -70,7 +70,7 @@ StTriggerData* TriggerData::Instance(char *td, int run, int event){
       else
       {	
 	LOG_ERROR << "TRG RAW: version missmatch, skipping trigger data" << endm;
-      }
+      } 
   }
   return trgdata;
 }

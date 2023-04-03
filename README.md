@@ -2,6 +2,7 @@
 
 ## Compile the code
 ```sh
+cd ZDC_code
 starver dev
 cons
 ```
@@ -74,5 +75,5 @@ And finally, some straighforward changes in these files:
 ZDC_Calibration/ZdcCalibration/moveToWww.sh
 ZDC_Calibration/ZdcCalibration/html_maker.cpp
 ZDC_code/readRunList.sh
-/ZDC_code/data/ls.csh
+ZDC_code/data/ls.csh
 ```
