@@ -9,7 +9,7 @@ void html_maker(int RunNumber = 22180018)
 	char typeEnergy[10]={"truhlar"};
 
 	TString Trgsetup = "ZdcCalibration";
-	TString BeamTypeEnergy = "p+p";
+	TString BeamTypeEnergy = "Au+Au";
 //*********************************************************
 	if(RunNumber < 1e7 || RunNumber >= 1e8) // has to be an 8-digit number
 	{
@@ -22,7 +22,7 @@ void html_maker(int RunNumber = 22180018)
 	char root_file_path[200]={"/gpfs01/star/pwg/truhlar/ZDC/ZDC_Calibration"};
 	char work_dir[200];	sprintf(work_dir,"%s/run%d.%s.%s",root_file_path,RunYear,trgSetup,typeEnergy);
 	char data_file[200];sprintf(data_file,"%s/analysis/%d/%d_gain_ratio.dat",work_dir,RunNumber,RunNumber);
-	char html_file[200];sprintf(html_file,"%s/analysis.%d.html",work_dir,RunNumber);
+	char html_file[200];sprintf(html_file,"%s/analysis.%d.htm",work_dir,RunNumber);
 	cout<<data_file<<endl;
 	cout<<html_file<<endl;
 

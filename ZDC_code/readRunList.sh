@@ -1,8 +1,8 @@
 #!/bin/bash
 
 runList=${1:-"unSeenRuns.list"}
-runDirectory="run21.ZdcCalibration.truhlar"
-runYear="run21"
+runDirectory="run23.ZdcCalibration.truhlar"
+runYear="run23"
 tofCut=10
 
 # untar all the tarred .dat files
@@ -21,6 +21,7 @@ for run in $( cat  $runList ); do
   # else
   if [ -f read.pid ]; then
     echo Previous reading failed, aborting ...
+    echo Delete the read.pid file, it may help
     return -1
   fi
   ./read
@@ -32,9 +33,9 @@ done
 
 cp ../ZDC_Calibration/ZdcCalibration/moveToWww.sh ../ZDC_Calibration/$runDirectory/
 
-pushd ../ZDC_Calibration/$runDirectory  >> /dev/null
-  ./moveToWww.sh
-popd >> /dev/null
+#pushd ../ZDC_Calibration/$runDirectory  >> /dev/null
+#  ./moveToWww.sh
+#popd >> /dev/null
 
 rm $runList
 echo '**************Finished****************'

@@ -108,17 +108,17 @@ void zdcTree::Loop()
   char savename_west_sum_combination[200];
   char savename_east_sum_combination[200];
 
-  TH1D *east_att = new TH1D("ZDC_ADC_east_att","ZDC_ADC_east_att",400,0,4000);// attenuated
-  TH1D *east_sum = new TH1D("ZDC_ADC_east_sum","ZDC_ADC_east_sum",100,0,800); // close view of the single neutron peak
-  TH1D *east_1 = new TH1D("ZDC_ADC_east_1","ZDC_ADC_east_1",400,0,4000);
-  TH1D *east_2 = new TH1D("ZDC_ADC_east_2","ZDC_ADC_east_2",400,0,4000);
-  TH1D *east_3 = new TH1D("ZDC_ADC_east_3","ZDC_ADC_east_3",400,0,4000);
+  TH1D *east_att = new TH1D("ZDC_ADC_east_att","ZDC_ADC_east_att",800,0,4000);// attenuated
+  TH1D *east_sum = new TH1D("ZDC_ADC_east_sum","ZDC_ADC_east_sum",160,0,800); // close view of the single neutron peak
+  TH1D *east_1 = new TH1D("ZDC_ADC_east_1","ZDC_ADC_east_1",800,0,4000);
+  TH1D *east_2 = new TH1D("ZDC_ADC_east_2","ZDC_ADC_east_2",800,0,4000);
+  TH1D *east_3 = new TH1D("ZDC_ADC_east_3","ZDC_ADC_east_3",800,0,4000);
 
-  TH1D *west_att = new TH1D("ZDC_ADC_west_att","ZDC_ADC_west_att",400,0,4000);
-  TH1D *west_sum = new TH1D("ZDC_ADC_west_sum","ZDC_ADC_west_sum",100,0,800); // close view of the single neutron peak
-  TH1D *west_1 = new TH1D("ZDC_ADC_west_1","ZDC_ADC_west_1",400,0,4000);
-  TH1D *west_2 = new TH1D("ZDC_ADC_west_2","ZDC_ADC_west_2",400,0,4000);
-  TH1D *west_3 = new TH1D("ZDC_ADC_west_3","ZDC_ADC_west_3",400,0,4000);
+  TH1D *west_att = new TH1D("ZDC_ADC_west_att","ZDC_ADC_west_att",800,0,4000);
+  TH1D *west_sum = new TH1D("ZDC_ADC_west_sum","ZDC_ADC_west_sum",160,0,800); // close view of the single neutron peak
+  TH1D *west_1 = new TH1D("ZDC_ADC_west_1","ZDC_ADC_west_1",800,0,4000);
+  TH1D *west_2 = new TH1D("ZDC_ADC_west_2","ZDC_ADC_west_2",800,0,4000);
+  TH1D *west_3 = new TH1D("ZDC_ADC_west_3","ZDC_ADC_west_3",800,0,4000);
 
   TH1D *gain_east = new TH1D("ratio_east","ratio_east",3,0,3);
   TH1D *gain_west = new TH1D("ratio_west","ratio_east",3,0,3);
@@ -158,10 +158,10 @@ void zdcTree::Loop()
 
   ConfigFile.close();
 */
-  const float eastSnpMean = 45.9270; //parameters[0];
-  const float eastSnpSigma = 11.6; //parameters[1];
-  const float westSnpMean = 45.3; //parameters[2];
-  const float westSnpSigma = 16.3; //parameters[3];
+  const float eastSnpMean = 69.3; //parameters[0];
+  const float eastSnpSigma = 14.8; //parameters[1];
+  const float westSnpMean = 73.6; //parameters[2];
+  const float westSnpSigma = 19.6; //parameters[3];
   const float NSigma = 2.;
 
 
@@ -199,7 +199,7 @@ void zdcTree::Loop()
 
     // ADC sum cuts
     bool westCut = zdc_ADC_WestSum < 400;
-    bool eastCut = zdc_ADC_EastSum < 300;
+    bool eastCut = zdc_ADC_EastSum < 400;
     //
     // TAC cuts
     bool eastTACcut = zdc_TDC_EastSum > 200 && zdc_TDC_EastSum < 2000;

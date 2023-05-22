@@ -14,8 +14,8 @@
 void plotSingleNeutron(const int runNmbr = 22180018)
 {
   const std::string runNumber = Form("%i",runNmbr);
-  TFile *inf1 = new TFile( ("../run21.ZdcCalibration.truhlar/analysis/" + runNumber + "/" + runNumber + "_my_zdc_result_file.root").data() );
-  TString config_name = "../run21.ZdcCalibration.truhlar/analysis/" + runNumber + "/fit_parameters.in";
+  TFile *inf1 = new TFile( ("../run23.ZdcCalibration.truhlar/analysis/" + runNumber + "/" + runNumber + "_my_zdc_result_file.root").data() );
+  TString config_name = "../run23.ZdcCalibration.truhlar/analysis/" + runNumber + "/fit_parameters.in";
   std::ofstream configfile (config_name);
   if(!configfile) {cerr<<"Create data file failed !"<<endl; return;}
 
@@ -28,8 +28,8 @@ void plotSingleNeutron(const int runNmbr = 22180018)
   TF1 *eastF = new TF1("eastF", "[0] + ([1])*(TMath::Exp(-[2]*x)) + ([3])*(TMath::Gaus(x,[4],[5],1)) + [6]*TMath::Gaus(x,2.*[4],[7],1)",50,400);
   TF1 *westF = new TF1("westF", "[0] + ([1])*(TMath::Exp(-[2]*x)) + ([3])*(TMath::Gaus(x,[4],[5],1)) + [6]*TMath::Gaus(x,2.*[4],[7],1)",50,400);
 
-  //eastF->SetParameters( 7.11954e+01, 1.91250e+03 , 2.24099e-02, 14,  9.44266e+01 , 9.80875e+00 );
-  eastF->SetParameters(  -3500, 3500, 0.00044, 15000, 80, 9.80875e+00, 5000, 10 );
+  eastF->SetParameters( -123600, 123600, -0.00001, 150500, 70, 14, 89200, 67);
+  //eastF->SetParameters(  -3500, 3500, 0.00044, 15000, 80, 9.80875e+00, 5000, 10 );
   eastF->SetParName(0,"Constant");
   eastF->SetParName(1,"BgConstant");
   eastF->SetParName(2,"BgSlope");
@@ -39,7 +39,7 @@ void plotSingleNeutron(const int runNmbr = 22180018)
   eastF->SetParName(6,"Yield Double");
   eastF->SetParName(7,"sigma Double");
 
-  westF->SetParameters( -3300, 3600, 0.00001, 9000, 90 , 9.80875e+00 ,2200, 10);
+  westF->SetParameters( -123600, 123600, -0.000006, 140000, 73, 19, 88000, 89);
   //westF->SetParameters( 7.11954e+01, 1.91250e+03 , 2.24099e-02, 14,  110 , 9.80875e+00 );
   westF->SetParName(0,"Constant");
   westF->SetParName(1,"BgConstant");
@@ -50,8 +50,8 @@ void plotSingleNeutron(const int runNmbr = 22180018)
   westF->SetParName(6,"Yield Double");
   westF->SetParName(7,"sigma Double");
 
-  hEast->Fit("eastF", "","", 50, 330);
-  hWest->Fit("westF", "","", 60, 330);
+  hEast->Fit("eastF", "","", 10, 330);
+  hWest->Fit("westF", "","", 10, 330);
   // hEast->SetAxisRange(50,180,"X");
   // hWest->SetAxisRange(50,180,"X");
 
@@ -77,12 +77,17 @@ void plotSingleNeutron(const int runNmbr = 22180018)
   configfile << "WestSnpSigma="<< westF->GetParameter("sigma") <<"\n"; 
   configfile.close();
 
-  std::string eastFileName = "../run21.ZdcCalibration.truhlar/analysis/" + runNumber + "/snp" + runNumber + "east";
+  cout << "  const float eastSnpMean = "<< eastF->GetParameter("Mean") <<";" <<"\n";
+  cout << "  const float eastSnpSigma = "<< eastF->GetParameter("sigma") <<";" <<"\n"; 
+  cout << "  const float westSnpMean = "<< westF->GetParameter("Mean") <<";" <<"\n"; 
+  cout << "  const float westSnpSigma = "<< westF->GetParameter("sigma") <<";" <<"\n"; 
+
+  std::string eastFileName = "../run23.ZdcCalibration.truhlar/analysis/" + runNumber + "/snp" + runNumber + "east";
   C1->SaveAs( (eastFileName + ".pdf" ).data() );
   C1->SaveAs( (eastFileName + ".png" ).data() );
   C1->SaveAs( (eastFileName + ".root").data() );
 
-  std::string westFileName = "../run21.ZdcCalibration.truhlar/analysis/" + runNumber + "/snp" + runNumber + "west";
+  std::string westFileName = "../run23.ZdcCalibration.truhlar/analysis/" + runNumber + "/snp" + runNumber + "west";
   C2->SaveAs( (westFileName + ".pdf" ).data() );
   C2->SaveAs( (westFileName + ".png" ).data() );
   C2->SaveAs( (westFileName + ".root").data() );

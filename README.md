@@ -27,7 +27,25 @@ Once the file is download, the only think you need to do is run:
 ```
 Check the quality of fits in
 ```sh
-/gpfs01/star/pwg/truhlar/ZDC/ZDC_Calibration/run21.ZdcCalibration.truhlar/analysis/RUNNUMBER
+ZDC_Calibration/runXX.ZdcCalibration.truhlar/analysis/RUNNUMBER
+```
+The results of SNP fits (mean and sigma) have to be put into zdcTree.C in lines 161-164
+The results of SNP fits are stored in 
+```sh
+ZDC_Calibration/runXX.ZdcCalibration.truhlar/analysis/RUNNUMBER/fit_parameters.in
+```
+to load the results from fit_parameters.in in zdcTree.C automatically is work in progress...
+
+To refit the SNP, run 
+```sh
+./plotSingleNeutron.C
+```
+in ZDC_Calibration/ZdcCalibration/
+You may want to change the initial parametrs of fits in lines 31 and 42. 
+
+When fitting is done and the SNP results are changed in zdcTree.C in lines 161-164, run
+```sh
+./runFinal.sh RUNNUMBER TOFCUT 
 ```
 
 Before running this script, update all files and create appropriate folders. For details see the section below.
@@ -74,6 +92,7 @@ And finally, some straighforward changes in these files:
 ```sh
 ZDC_Calibration/ZdcCalibration/moveToWww.sh
 ZDC_Calibration/ZdcCalibration/html_maker.cpp
+ZDC_Calibration/ZdcCalibration/runFinal.sh
 ZDC_code/readRunList.sh
 ZDC_code/data/ls.csh
 ```
